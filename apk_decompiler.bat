@@ -30,41 +30,17 @@ GOTO generate_src_folder_name
 :process_own
 ECHO. | tee -a apk_decompiler-results.txt
 ECHO Decompiling : %apk_name%  | tee apk_decompiler-results.txt
-CALL apktool if "%apk%"
-CALL apktool d "%apk%" apk\
-WinRAR x -y "%apk%" winrar-apk\
-CALL d2j-dex2jar --force winrar-apk\classes.dex
-WinRAR x -y classes-dex2jar.jar apk\class\
-xcopy /y apk\apktool.yml apk\other\ | tee -a apk_decompiler-results.txt 
-xcopy /y classes-dex2jar.jar apk\other\ | tee -a apk_decompiler-results.txt 
-del apk\apktool.yml | tee -a apk_decompiler-results.txt 
-del classes-dex2jar.jar | tee -a apk_decompiler-results.txt 
-rmdir /s /q winrar-apk | tee -a apk_decompiler-results.txt 
-mkdir "%apk_src_folder_name%-src" | tee -a apk_decompiler-results.txt 
-xcopy /y /E apk "%apk_src_folder_name%-src\" | tee -a apk_decompiler-results.txt 
-rmdir /s /q apk | tee -a apk_decompiler-results.txt 
+CALL apktool d "%apk%"
 ECHO Decompilation and cleaning finished for : %apk_name% | tee -a apk_decompiler-results.txt 
-ECHO It's Source folder is : %apk_src_folder_name%-src | tee -a apk_decompiler-results.txt
+ECHO It's Source folder is : %apk_src_folder_name% | tee -a apk_decompiler-results.txt
 GOTO end
 
 :process_CMD
 ECHO. | tee -a %2-results.txt
 ECHO Decompiling : %apk_name%  | tee -a %2-results.txt
-CALL apktool if "%apk%"
-CALL apktool d "%apk%" apk\
-WinRAR x -y "%apk%" winrar-apk\
-CALL d2j-dex2jar --force winrar-apk\classes.dex
-WinRAR x -y classes-dex2jar.jar apk\class\
-xcopy /y apk\apktool.yml apk\other\ | tee -a %2-results.txt
-xcopy /y classes-dex2jar.jar apk\other\ | tee -a %2-results.txt
-del apk\apktool.yml | tee -a %2-results.txt
-del classes-dex2jar.jar | tee -a %2-results.txt
-rmdir /s /q winrar-apk | tee -a %2-results.txt
-mkdir "%apk_src_folder_name%-src" | tee -a %2-results.txt
-xcopy /y /E apk "%apk_src_folder_name%-src\" | tee -a %2-results.txt
-rmdir /s /q apk | tee -a %2-results.txt
+CALL apktool d "%apk%"
 ECHO Decompilation and cleaning finished for : %apk_name% | tee -a %2-results.txt
-ECHO It's Source folder is : %apk_src_folder_name%-src | tee -a %2-results.txt
+ECHO It's Source folder is : %apk_src_folder_name% | tee -a %2-results.txt
 GOTO end
 
 :extract
