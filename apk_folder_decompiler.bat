@@ -15,11 +15,11 @@ ECHO APK Folder : %folder% | tee -a apk_folder_decompiler-results.txt
 ECHO Generating file list... | tee -a apk_folder_decompiler-results.txt
 DIR %folder% /B /S | FINDSTR /E .apk > project-files.list
 ECHO File list generated successfully... | tee -a apk_folder_decompiler-results.txt
-IF "%choice%"=="I" (PAUSE)
+IF "%choice%"=="I" ( PAUSE )
 FOR /F "TOKENS=*" %%a IN ('TYPE project-files.list') DO (
 	::ECHO %%a
 	CALL apk_decompiler "%%a" apk_folder_decompiler
-	IF "%choice%"=="I" (PAUSE)
+	IF "%choice%"=="I" ( PAUSE )
 )
 ECHO.
 ECHO Cleaning... | tee -a apk_folder_decompiler-results.txt
