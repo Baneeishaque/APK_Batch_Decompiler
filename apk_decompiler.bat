@@ -1,30 +1,33 @@
 @ECHO OFF
+
 SETLOCAL ENABLEDELAYEDEXPANSION
+
 ::ECHO %2
 ::GOTO end
-::SET /P apk=Please Provide APK : 
+
 SET mode=own
 SET apk=%~1
 IF "%apk%"=="" (
 	SET /P apk=Please Provide APK : 
 ) ELSE SET mode=CMD
-::ECHO %mode%
-::GOTO end
+
+REM ECHO %mode%
+REM GOTO end
+
 SET apk=%apk:"=%
 ::ECHO %apk%
 ::GOTO end
 
-:demo
-::SET apk=Whose Phone Number In Contacts 1.3_4.apk
-::SET apk=D:\DK-HP-PA-2000AR\Projects\Apk_Decompiler\Whose Phone Number In Contacts 1.3_4.apk
 SET apk_path=%apk%
 ::ECHO %apk_path%
+
 SET modified_apk_path=%apk_path:\=%
 ::ECHO %modified_apk_path%
-::IF "%apk_path%"=="%modified_apk_path%" (SET apk_name=%apk_path%) ELSE SET apk_name=Extract it
+
 IF "%apk_path%"=="%modified_apk_path%" (SET apk_name=%apk_path%) ELSE GOTO extract
 ::ECHO %apk_name%
 ::GOTO end
+
 GOTO generate_src_folder_name
 
 :process_own
@@ -47,14 +50,15 @@ GOTO end
 ::set S=%apk_path%
 ::ECHO %S%
 ::GOTO end
+
 set I=0
 set L=-1
 :l
 if "!apk_path:~%I%,1!"=="" goto ld
-::if "!S:~%I%,1!"=="/" set L=%I%
 if "!apk_path:~%I%,1!"=="\" set L=%I%
 set /a I+=1
 goto l
+
 :ld
 ::echo %L%
 SET /A L+=1
@@ -63,9 +67,10 @@ CALL SET apk_name=%%apk_path:~%L%%%
 ::GOTO generate_src_folder_name
 
 :generate_src_folder_name
-DEL apk_decompiler-results.txt
+DEL apk_decompiler-results.txt 2>NUL
 SET apk_src_folder_name=%apk_name:~0,-4%
 ::ECHO %apk_src_folder_name%
+
 IF "%mode%"=="CMD" (GOTO process_CMD) ELSE GOTO process_own
 
 :end

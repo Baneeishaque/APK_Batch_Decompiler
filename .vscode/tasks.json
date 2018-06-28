@@ -1,0 +1,70 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run apk decompiler small Auto",
+            "type": "shell",
+            "command": "apk_decompiler.bat",
+            "args": [
+                "Whose Phone Number In Contacts 1.3_4.apk",
+                "Auto apk decompiler"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "run apk decompiler large Auto",
+            "type": "shell",
+            "command": "apk_decompiler.bat",
+            "args": [
+                "Cool me music HD version.apk",
+                "Auto apk decompiler"
+            ],
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "run apk decompiler",
+            "type": "shell",
+            "command": "apk_decompiler.bat",
+            "group": "test",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        },
+        {
+            "label": "run apk folder decompiler",
+            "type": "shell",
+            "command": "apk_folder_decompiler.bat",
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "showReuseMessage": true
+            }
+        }
+    ]
+}
